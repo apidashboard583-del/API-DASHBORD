@@ -1,34 +1,1576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MALEESHA WEBSITE</title>
-    <style>
-        body {
-            background: #0b1020;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 100px 15px;
-        }
-        h1 {
-            color: #00d9ff;
-        }
-        .card {
-            background: #17213a;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MALEESHA-V3 | Railway Code Generator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#030812;
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,180,255,.20),transparent 35%),
+        radial-gradient(circle at 80% 70%,rgba(0,100,255,.15),transparent 35%),
+        linear-gradient(180deg,#020a1a,#01040d);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    opacity:.35;
+    background-image:
+        linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);
+    background-size:45px 45px;
+    pointer-events:none;
+}
+
+/* PARTICLES */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#00d4ff;
+    box-shadow:0 0 12px #00d4ff;
+    animation:float 14s linear infinite;
+}
+
+.p1{left:7%;animation-delay:0s}
+.p2{left:18%;animation-delay:3s}
+.p3{left:31%;animation-delay:6s}
+.p4{left:47%;animation-delay:2s}
+.p5{left:61%;animation-delay:7s}
+.p6{left:76%;animation-delay:4s}
+.p7{left:89%;animation-delay:1s}
+
+@keyframes float{
+    0%{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* =========================
+   MUSIC OVERLAY (EXPANDED LARGE)
+========================= */
+
+#musicOverlay{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(2, 8, 20, 0.98);
+    backdrop-filter:blur(20px);
+    overflow-y: auto;
+    padding: 30px 15px;
+}
+
+.musicBox{
+    width:100%;
+    max-width:680px;
+    padding:35px 25px;
+    text-align:center;
+    border:2px solid #00d4ff;
+    border-radius:28px;
+    background:linear-gradient(
+        145deg,
+        rgba(3, 20, 48, 0.98),
+        rgba(1, 8, 24, 0.99)
+    );
+    box-shadow:
+        0 0 40px rgba(0,212,255,.45),
+        0 0 100px rgba(0,100,255,.25);
+    margin: auto;
+}
+
+.musicIcon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    border:2px solid #00d4ff;
+    font-size:36px;
+    box-shadow:0 0 30px #0088ff;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.musicBox h2{
+    color:#00d4ff;
+    margin-bottom:12px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.musicBox .promo-banner{
+    background: rgba(0, 212, 255, 0.12);
+    border: 2px dashed rgba(0, 212, 255, 0.5);
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.musicBox .promo-banner p:first-child{
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.musicBox .promo-banner h3{
+    color: #00d4ff;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* COMMANDS CONTAINER - EXPANDED LARGE VIEW */
+.commands-container{
+    text-align: left;
+    margin-bottom: 25px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 15px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.commands-container::-webkit-scrollbar {
+    width: 6px;
+}
+.commands-container::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 6px;
+}
+
+.cmd-section-title{
+    color: #00d4ff;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 14px 0 10px 0;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+.cmd-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.cmd-item{
+    background: rgba(3, 20, 48, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cmd-name{
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.status-active{
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 11px;
+    background: rgba(46, 204, 113, 0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.status-update{
+    color: #f1c40f;
+    font-weight: bold;
+    font-size: 11px;
+    background: rgba(241, 196, 15, 0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.single-cmd-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badge-tag{
+    background: rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#startMusicBtn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:35px;
+    background:linear-gradient(90deg,#0055ff,#00d4ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 30px rgba(0, 212, 255, 0.6);
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+#startMusicBtn:hover{
+    transform: scale(1.02);
+    box-shadow:0 0 45px rgba(0, 212, 255, 0.85);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:13px 6%;
+
+    background:rgba(2, 10, 26, 0.85);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(0, 212, 255, 0.2);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:20px;
+    font-weight:bold;
+}
+
+.brand img{
+    width:43px;
+    height:43px;
+    object-fit:cover;
+    border-radius:50%;
+
+    border:2px solid #00d4ff;
+
+    box-shadow:
+        0 0 12px #0088ff,
+        0 0 25px rgba(0, 212, 255, 0.25);
+}
+
+.brand span{
+    background:linear-gradient(90deg,#fff,#00d4ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.navButton{
+    padding:9px 16px;
+    border-radius:20px;
+
+    border:1px solid #00a2ff;
+    background:rgba(0, 162, 255, 0.1);
+
+    color:white;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.navButton:hover{
+    background:#00d4ff;
+    color:#020a1a;
+    box-shadow:0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:600px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:65px 20px 45px;
+}
+
+.heroLogo{
+    width:155px;
+    height:155px;
+
+    object-fit:cover;
+    border-radius:50%;
+
+    border:3px solid #00d4ff;
+
+    box-shadow:
+        0 0 25px #0088ff,
+        0 0 70px rgba(0, 212, 255, 0.4);
+
+    margin-bottom:25px;
+
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.hero h1{
+    font-size:clamp(38px,8vw,65px);
+    font-weight:900;
+    letter-spacing:2px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #bfeeff,
+        #00d4ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:8px;
+}
+
+.subtitle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+
+    color:#00d4ff;
+
+    font-size:13px;
+    letter-spacing:5px;
+    font-weight:bold;
+}
+
+.subtitle::before,
+.subtitle::after{
+    content:"";
+
+    width:65px;
+    height:1px;
+
+    background:#00d4ff;
+
+    box-shadow:0 0 8px #00d4ff;
+}
+
+.heroText{
+    max-width:680px;
+
+    color:#a4cbdd;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    margin:20px auto 28px;
+}
+
+/* CONNECT BUTTON */
+
+.connectButton{
+    border:none;
+
+    padding:15px 32px;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #0055ff,
+        #00d4ff
+    );
+
+    color:white;
+
+    font-weight:bold;
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 20px rgba(0, 212, 255, 0.4);
+
+    transition:.3s;
+}
+
+.connectButton:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 35px rgba(0, 212, 255, 0.7);
+}
+
+/* =========================
+   PAIRING SECTION
+========================= */
+
+.pairSection{
+    padding:20px 20px 65px;
+}
+
+.pairCard{
+    max-width:780px;
+    margin:auto;
+
+    padding:40px 30px;
+
+    border-radius:28px;
+
+    border:1px solid rgba(0, 212, 255, 0.6);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(3, 20, 48, 0.8),
+            rgba(1, 8, 24, 0.92)
+        );
+
+    box-shadow:
+        0 0 25px rgba(0, 212, 255, 0.25),
+        0 0 80px rgba(0, 100, 255, 0.15);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.pairCard::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    right:-120px;
+    top:-120px;
+
+    background:#00d4ff;
+
+    opacity:.08;
+
+    filter:blur(55px);
+
+    border-radius:50%;
+}
+
+.userIcon{
+    width:75px;
+    height:75px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    border:2px solid #00d4ff;
+
+    font-size:35px;
+
+    box-shadow:0 0 22px rgba(0, 212, 255, 0.35);
+}
+
+.pairCard h2{
+    text-align:center;
+
+    margin-top:18px;
+
+    font-size:30px;
+}
+
+.gradientText{
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #00d4ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.created{
+    text-align:center;
+
+    color:#69b2d6;
+
+    font-size:13px;
+
+    margin-top:7px;
+    margin-bottom:30px;
+}
+
+.inputLabel{
+    display:block;
+
+    color:#00d4ff;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+.inputWrap{
+    display:flex;
+    width:100%;
+}
+
+.inputWrap input{
+    flex:1;
+
+    min-width:0;
+
+    padding:16px;
+
+    border:1px solid #0077cc;
+    border-right:none;
+
+    border-radius:13px 0 0 13px;
+
+    outline:none;
+
+    background:#020b18;
+
+    color:white;
+
+    font-size:15px;
+}
+
+.inputWrap input:focus{
+    border-color:#00d4ff;
+
+    box-shadow:
+        0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.submitButton{
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:0 13px 13px 0;
+
+    background:linear-gradient(
+        90deg,
+        #00d4ff,
+        #0055ff
+    );
+
+    color:#020a1a;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    font-size:14px;
+}
+
+.result{
+    margin-top:20px;
+
+    text-align:center;
+
+    min-height:25px;
+
+    word-break:break-word;
+}
+
+#pairCode{
+    color:#00d4ff;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    margin:10px 0;
+
+    text-shadow:
+        0 0 15px rgba(0, 212, 255, 0.6);
+}
+
+#copyBtn{
+    display:none;
+
+    margin-top:10px;
+
+    padding:10px 22px;
+
+    border-radius:22px;
+
+    border:1px solid #00d4ff;
+
+    background:rgba(0, 212, 255, 0.1);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.infoBox{
+    margin-top:20px;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    border:1px solid rgba(0, 212, 255, 0.25);
+
+    background:rgba(0, 150, 255, 0.05);
+
+    color:#8cbcd4;
+
+    text-align:center;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    max-width:1050px;
+
+    margin:auto;
+
+    padding:10px 20px 65px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.feature{
+    padding:24px 15px;
+
+    text-align:center;
+
+    border-radius:19px;
+
+    border:1px solid rgba(0, 212, 255, 0.2);
+
+    background:rgba(0, 150, 255, 0.05);
+
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateY(-5px);
+
+    border-color:#00d4ff;
+
+    box-shadow:
+        0 0 25px rgba(0, 212, 255, 0.2);
+}
+
+.featureIcon{
+    font-size:29px;
+
+    margin-bottom:10px;
+}
+
+.feature h3{
+    color:#00d4ff;
+
+    font-size:15px;
+
+    margin-bottom:7px;
+}
+
+.feature p{
+    color:#7ca0b3;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    max-width:900px;
+
+    margin:auto;
+
+    padding:0 20px 60px;
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.stat{
+    flex:1;
+
+    min-width:160px;
+
+    padding:22px;
+
+    text-align:center;
+
+    border-radius:19px;
+
+    border:1px solid rgba(0, 212, 255, 0.2);
+
+    background:rgba(0, 150, 255, 0.05);
+}
+
+.stat h2{
+    color:#00d4ff;
+
+    font-size:27px;
+}
+
+.stat p{
+    color:#7ca0b3;
+
+    margin-top:6px;
+
+    font-size:12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:45px 20px 30px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(0, 212, 255, 0.2);
+
+    background:rgba(2, 8, 20, 0.8);
+}
+
+.footerTitle{
+    font-size:27px;
+
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #00d4ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.footerSub{
+    color:#538da8;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    margin-top:7px;
+}
+
+.safe{
+    color:#00d4ff;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    margin-top:20px;
+}
+
+.copyright{
+    color:#3c677c;
+
+    font-size:11px;
+
+    margin-top:20px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:700px){
+
+    .navButton{
+        display:none;
+    }
+
+    .hero{
+        min-height:570px;
+
+        padding-top:50px;
+    }
+
+    .heroLogo{
+        width:135px;
+        height:135px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .subtitle{
+        font-size:9px;
+
+        letter-spacing:3px;
+    }
+
+    .subtitle::before,
+    .subtitle::after{
+        width:30px;
+    }
+
+    .pairCard{
+        padding:30px 18px;
+    }
+
+    .inputWrap{
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .inputWrap input{
+        border-right:1px solid #0077cc;
+
+        border-radius:12px;
+    }
+
+    .submitButton{
+        min-height:50px;
+
+        border-radius:12px;
+    }
+
+    .cmd-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:420px){
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .brand{
+        font-size:17px;
+    }
+
+    .brand img{
+        width:38px;
+        height:38px;
+    }
+
+    .heroText{
+        font-size:13px;
+    }
+
+    .pairCard h2{
+        font-size:26px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="card">
-        <h1>MALEESHA WEBSITE</h1>
-        <p>Welcome to my website!</p>
-        <p>100% Free Hosting 🚀</p>
+
+<!-- PARTICLES -->
+
+<div class="particles">
+
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+    <span class="particle p5"></span>
+    <span class="particle p6"></span>
+    <span class="particle p7"></span>
+
+</div>
+
+
+<!-- MUSIC -->
+
+<audio
+    id="bgMusic"
+    preload="auto"
+    loop
+    playsinline>
+
+    <source
+        src="https://cloud.laksidu.site/stream/hBfYaXdU9Q/lakiya-1791685869979.mpeg"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- MUSIC SCREEN OVERLAY (FULLY EXPANDED) -->
+
+<div id="musicOverlay">
+
+    <div class="musicBox">
+
+        <div class="musicIcon">
+            🎵
+        </div>
+
+        <h2>
+            MALEESHA-V3
+        </h2>
+
+        <div class="promo-banner">
+            <p>📽️ සිංහල උපසිරැසි සමග MOVIE බලන්න දැන්ම pair කරගන්න 🍿</p>
+            <h3>👑 𝙈𝘼𝙇𝙄𝙔𝘼 𝘾𝙄𝙉𝙀 𝙃𝙐𝘽 🎭</h3>
+        </div>
+
+        <!-- FULL DISPLAY COMMANDS SECTION -->
+        <div class="commands-container">
+            
+            <div class="cmd-section-title">MOVIE COMMAND 🍿</div>
+            <div class="cmd-grid">
+                <div class="cmd-item"><span class="cmd-name">🍿 CineSubz</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">📽️ Cineru</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">🎥 Sinhalasub</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">🎬 Dinkamovies</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">🧩 Sinhalacaroon</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">🍟 Thenkiri</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">📹 Baiscope</span><span class="status-update">Update</span></div>
+                <div class="cmd-item"><span class="cmd-name">🌸 Animehaven</span><span class="status-active">Active</span></div>
+                <div class="cmd-item"><span class="cmd-name">🌿 Lksub</span><span class="status-update">Update</span></div>
+                <div class="cmd-item"><span class="cmd-name">🇱🇰 Chithrapata</span><span class="status-update">Update</span></div>
+            </div>
+
+            <div class="cmd-section-title">DOWNLOAD COMMAND 📥</div>
+            <div class="single-cmd-list">
+                <span class="badge-tag">TIKTOK</span>
+                <span class="badge-tag">YOUTUBE</span>
+                <span class="badge-tag">FACEBOOK</span>
+                <span class="badge-tag">SONG</span>
+            </div>
+
+            <div class="cmd-section-title">AI COMMAND 🧠</div>
+            <div class="single-cmd-list">
+                <span class="badge-tag">GEMINI</span>
+                <span class="badge-tag">DEEPSHEEK-AI</span>
+            </div>
+
+        </div>
+
+        <button id="startMusicBtn">
+            🎵 ENTER & PLAY MUSIC
+        </button>
+
     </div>
+
+</div>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="brand">
+
+        <img
+            src="https://cloud.laksidu.site/stream/r6H8DAZpOO/lakiya-1792139411146.jpg"
+            alt="MALEESHA-V3">
+
+        <span>
+            MALEESHA-V3
+        </span>
+
+    </div>
+
+    <button
+        class="navButton"
+        onclick="scrollToPair()">
+
+        🔗 CONNECT BOT
+
+    </button>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <img
+        class="heroLogo"
+        src="https://cloud.laksidu.site/stream/r6H8DAZpOO/lakiya-1792139411146.jpg"
+        alt="MALEESHA-V3">
+
+    <h1>
+        MALEESHA-V3
+    </h1>
+
+    <div class="subtitle">
+         CODE GENERATOR
+    </div>
+
+    <p class="heroText">
+
+        Fast and powerful WhatsApp bot
+        pairing system. Connect your WhatsApp
+        account easily using the secure
+        maleesha pairing code system.
+
+    </p>
+
+    <button
+        class="connectButton"
+        onclick="scrollToPair()">
+
+        🔗 CONNECT BOT
+
+    </button>
+
+</section>
+
+
+<!-- PAIRING SECTION -->
+
+<section
+    class="pairSection"
+    id="pairSection">
+
+    <div class="pairCard">
+
+        <div class="userIcon">
+            👤
+        </div>
+
+        <h2>
+
+            <span class="gradientText">
+                MALEESHA-V3
+            </span>
+
+        </h2>
+
+        <div class="created">
+            CREATED BY MALEESHA-V3 👑
+        </div>
+
+        <label class="inputLabel">
+
+            📱 Enter your number with country code
+
+        </label>
+
+        <div class="inputWrap">
+
+            <input
+                type="tel"
+                id="phoneNumber"
+                placeholder="Example: 947xxxxxxxx"
+                autocomplete="off">
+
+            <button
+                class="submitButton"
+                onclick="getPairCode()">
+
+                SUBMIT ➜
+
+            </button>
+
+        </div>
+
+
+        <div class="result">
+
+            <div id="pairCode"></div>
+
+            <button
+                id="copyBtn"
+                onclick="copyCode()">
+
+                📋 COPY CODE
+
+            </button>
+
+        </div>
+
+
+        <div class="infoBox">
+
+            🟢 Enter your WhatsApp number
+            with country code.
+            <br>
+
+            Example:
+            <b>947xxxxxxxx</b>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+    <div class="feature">
+
+        <div class="featureIcon">
+            🛡️
+        </div>
+
+        <h3>
+            Secure
+        </h3>
+
+        <p>
+            Simple and secure pairing system.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="featureIcon">
+            ⚡
+        </div>
+
+        <h3>
+            Fast
+        </h3>
+
+        <p>
+            Get your pairing code quickly.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="featureIcon">
+            ⚙️
+        </div>
+
+        <h3>
+            Easy To Use
+        </h3>
+
+        <p>
+            Simple interface for everyone.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="featureIcon">
+            🎧
+        </div>
+
+        <h3>
+            24/7 Service
+        </h3>
+
+        <p>
+            MALEESHA-V3 bot service.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <h2 id="onlineCount">
+            1,008
+        </h2>
+
+        <p>
+            Online Users
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>
+            24/7
+        </h2>
+
+        <p>
+            Bot Service
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>
+            FREE
+        </h2>
+
+        <p>
+            Pairing
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footerTitle">
+        MALEESHA-V3
+    </div>
+
+    <div class="footerSub">
+        RAILWAY CODE GENERATOR
+    </div>
+
+    <div class="safe">
+        🚆 SAFE • FAST • RELIABLE
+    </div>
+
+    <div class="copyright">
+        © 2026 MALEESHA-V3 — WhatsApp Bot
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MUSIC
+========================= */
+
+const bgMusic =
+    document.getElementById("bgMusic");
+
+const musicOverlay =
+    document.getElementById("musicOverlay");
+
+const startMusicBtn =
+    document.getElementById("startMusicBtn");
+
+bgMusic.volume = 0.45;
+
+startMusicBtn.addEventListener(
+    "click",
+    async function(){
+
+        try{
+
+            await bgMusic.play();
+
+        }catch(error){
+
+            console.log(
+                "Music error:",
+                error
+            );
+
+        }
+
+        musicOverlay.style.display =
+            "none";
+
+    }
+);
+
+
+/* =========================
+   SCROLL TO PAIR
+========================= */
+
+function scrollToPair(){
+
+    document
+    .getElementById("pairSection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================
+   GET PAIR CODE
+========================= */
+
+async function getPairCode(){
+
+    const input =
+        document.getElementById("phoneNumber");
+
+    const result =
+        document.getElementById("pairCode");
+
+    const copyBtn =
+        document.getElementById("copyBtn");
+
+    let number = input.value.trim();
+
+    if(!number){
+        result.innerHTML = "❌ Enter your WhatsApp number";
+        copyBtn.style.display = "none";
+        return;
+    }
+
+    number = number.replace(/\D/g,"");
+
+    if(number.length < 8){
+        result.innerHTML = "❌ Invalid WhatsApp number";
+        copyBtn.style.display = "none";
+        return;
+    }
+
+    result.innerHTML = "⏳ Generating pairing code...";
+    copyBtn.style.display = "none";
+
+    try{
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+        const response = await fetch(
+            "/code?number=" + encodeURIComponent(number),
+            { signal: controller.signal }
+        );
+
+        clearTimeout(timeoutId);
+
+        if(!response.ok){
+            throw new Error("Server responded with error status");
+        }
+
+        const data = await response.json();
+
+        if(data && data.code){
+            result.innerHTML = data.code;
+            window.currentPairCode = data.code;
+            copyBtn.style.display = "inline-block";
+        }
+        else if(data && (data.status === "already_connected" || data.connected)){
+            result.innerHTML = "✅ Already Connected";
+        }
+        else if(data && data.error){
+            result.innerHTML = "❌ " + data.error;
+        }
+        else{
+            result.innerHTML = "❌ Failed to generate pair code. Retry!";
+        }
+
+    }
+    catch(error){
+        console.error("Pairing Code Error:", error);
+        if (error.name === 'AbortError') {
+            result.innerHTML = "❌ Connection timed out. Please try again.";
+        } else {
+            result.innerHTML = "❌ Server error / Connection failed";
+        }
+    }
+}
+
+
+/* =========================
+   COPY CODE
+========================= */
+
+async function copyCode(){
+
+    const code = window.currentPairCode;
+
+    if(!code){
+        return;
+    }
+
+    const button = document.getElementById("copyBtn");
+
+    try{
+        await navigator.clipboard.writeText(code);
+        button.innerText = "✅ COPIED!";
+        setTimeout(function(){
+            button.innerText = "📋 COPY CODE";
+        },2000);
+    }
+    catch(error){
+        const textarea = document.createElement("textarea");
+        textarea.value = code;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+
+        button.innerText = "✅ COPIED!";
+        setTimeout(function(){
+            button.innerText = "📋 COPY CODE";
+        },2000);
+    }
+
+}
+
+
+/* =========================
+   ENTER KEY EVENT
+========================= */
+
+document
+.getElementById("phoneNumber")
+.addEventListener(
+    "keydown",
+    function(event){
+        if(event.key === "Enter"){
+            getPairCode();
+        }
+    }
+);
+
+
+/* =========================
+   ONLINE USERS COUNTER
+========================= */
+
+setInterval(function(){
+
+    const base = 1008;
+    const random = Math.floor(Math.random() * 80);
+
+    document
+    .getElementById("onlineCount")
+    .innerText = (base + random).toLocaleString();
+
+},5000);
+
+</script>
+
 </body>
 </html>
